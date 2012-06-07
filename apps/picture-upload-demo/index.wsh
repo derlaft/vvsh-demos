@@ -1,0 +1,27 @@
+#!/usr/bin/vvsh
+
+<% app 'picture-upload-demo' %>
+<% import main %>
+
+<?xml version="1.0" encoding="utf8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xml:lang="ru" lang="ru">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Picture upload</title>
+  </head>
+  <body>
+    <h1>Image upload</h1>
+    <div id="errors"><h2>${ERRORS}</h2></div>
+    <% if [ -n "$uploaded_url" ]; then %>
+      <div id="uploaded">
+      <h2>File uploaded</h2>
+      <p>Url: <a href="${uploaded_url}">${uploaded_url}</a></p>
+      </div>
+    <% fi %>
+    <form method="post" enctype="multipart/form-data">
+      Picture to Upload: <input type="file" name="photo"> <br />
+      <input type="submit" name="upload" value="Upload!">
+    </form>
+  </body>
+</html>

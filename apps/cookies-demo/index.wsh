@@ -1,0 +1,38 @@
+#!/usr/bin/vvsh
+
+<% app 'cookies-demo' %>
+<% import main %>
+
+<?xml version="1.0" encoding="utf8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xml:lang="ru" lang="ru">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Cookie demo</title>
+  </head>
+  <body>
+    <div id="edit">
+    <h1>Edit your cookies</h1>
+    <% if [ "${#http_cookies[@]}" -eq 0 ]; then %>
+      <p>Sorry, but you have no cookies</p>
+    <% fi %>
+    <% for name, value in http_cookies; do %>
+      <form method="POST">
+        <input type="hidden" value="$name" name="name"/>
+        <label for="value">$name: </label>
+        <input type="text" value="$value" name="value"/>
+        <input type="submit" value="Update"/> <br />
+      </form>
+    <% done %>
+    </div>
+    <div id="add">
+      <h1>Add cookie</h1>
+      <form method="POST">
+        <input type="text" value="name" name="name"/>
+        <label for="value"> = </label>
+        <input type="text" value="value" name="value"/>
+        <input type="submit" value="Add"/> <br />
+      </form>
+    </div>
+  </body>
+</html>

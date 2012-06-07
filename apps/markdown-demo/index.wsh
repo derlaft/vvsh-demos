@@ -1,0 +1,26 @@
+#!/usr/bin/vvsh
+
+<% header %>
+<?xml version="1.0" encoding="utf8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xml:lang="ru" lang="ru">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>Markdown demo</title>
+  </head>
+  <body>
+    <div id="show">
+    <h1>Enjoy your markdown</h1>
+      <% if [ -n "${http_params[text]}" ]; then %>
+        <% perform "${http_params[text]}" %>
+      <% fi %>
+    </div>
+    <div id="input">
+      <form method="POST" action="">
+        <label for="msg">Type your markdown text:</label><br>
+          <textarea required name="text" rows="15" cols="40">${http_params[text]}</textarea><br>
+          <input type=submit value="Preview">
+      </form>
+    </div>
+  </body>
+</html>
